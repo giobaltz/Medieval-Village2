@@ -1,0 +1,14 @@
+Έχουν γίνει:
+Rotate character
+solid objects 
+Move camera view with mouse
+
+Θάνος:
+Να πατάει στο έδαφος
+
+κίνηση στα χέρια, πόδια
+
+
+
+
+προσθήκη απαραίτητου σκηνικού
