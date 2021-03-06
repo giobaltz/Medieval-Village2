@@ -14,6 +14,11 @@ public class ThirdPersonMovement : MonoBehaviour
     float turnSmoothVelocity;
     public float turnSmoothTime = 0.1f;
 
+    public Transform groundCheck;
+    public LayerMask groundLayer;
+    public bool isGrounded;
+    public float gravity;
+    private Vector3 velocity;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -41,6 +46,34 @@ public class ThirdPersonMovement : MonoBehaviour
         {
             anim.SetBool("Walk", false);
         }
+        Gr();
     }
+    void Gr()
+    {
+        isGrounded = Physics.CheckSphere(groundCheck.position, 0.1f, groundLayer);
 
+        if (isGrounded && velocity.y < 0)
+
+            velocity.y = gravity;
+
+        //if (isGrounded && Input.GetKey(KeyCode.Space))
+        //{
+
+        //    if (isRunning)
+        //        velocity.y = Mathf.Sqrt(-2f * runJumpHeight * gravity);
+        //    else
+        //        velocity.y = Mathf.Sqrt(-2f * walkJumpHeight * gravity);
+
+        //    anim.SetBool("Jump", true);
+
+        //}
+
+        if (!isGrounded)
+        {
+            velocity.y += gravity * Time.deltaTime;
+            // anim.SetBool("Jump", false);
+        }
+
+        controller.Move(velocity * Time.deltaTime);
+    }
 }
